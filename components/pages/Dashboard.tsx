@@ -108,15 +108,15 @@ export default function Dashboard() {
       alt={item.title}
       loading="lazy"
       width={568}
-      height={400}
+      height={370}
     />
     <ImageListItemBar
       title={<Box sx={{ 
-        fontSize: { xs: '12px', md: '16px' },
-        lineHeight: { xs: '16px', md: '24px' },
-        letterSpacing: { xs: '0.004em', md: '0.3px' },
+        fontSize: { xs: '12px', sm: '16px' },
+        lineHeight: { xs: '16px', sm: '24px' },
+        letterSpacing: { xs: '0.004em', sm: '0.3px' },
         color: '#FFFFFF',
-        width: { xs: '216px', md: '472px' }, padding: '0', height: '48px', whiteSpace: 'pre-line'}}>{item.title}</Box>}
+        width: { xs: '216px', sm: '472px' }, padding: '0', height: '48px', whiteSpace: 'pre-line'}}>{item.title}</Box>}
       sx={{ whiteSpace: 'pre-wrap !important' , background:'rgba(0, 33, 11, 0.8)', WebkitLineClamp: "2",
       alignItems: 'center',
       padding: '21px 24px 21px 9px',
@@ -142,7 +142,7 @@ export default function Dashboard() {
         <Box sx={{ mb: '48px' }}>
           {
             userData.map((item, i) => (
-              <Card key={i} name={item.name} type={'sm'} time={item.time} avatar={item.image} style={{ width: '100%', background: '#00210B', borderRadius: '16px', p: '24px', mb: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #00210B' }} color={'white'} />
+              <Card key={i} name={item.name} type={'sm'} time={item.time} avatar={item.image} style={{ width: '100%', background: '#00210B', borderRadius: '16px', p: '24px', mb: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} color={'white'} />
             ))
           }
         </Box>
@@ -164,10 +164,11 @@ export default function Dashboard() {
         </Box>
         <Typography sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '26px', mb: '16px', fontFamily: 'Inter' }}>Explore our offerings</Typography>
 
-        <ImageList sx={{ width : { xs: 312, md: 568 }, height: { xs: 260, md: 450 } , display: 'block' }}>
+        <ImageList sx={{ width : { xs: '100%', sm: 568 }, height: { xs: 400, sm: 450 } , display: 'block' }}>
           <Carousel indicatorContainerProps={{
               style: { textAlign:'left', zIndex:1}
             }}
+            // sx={{height: { xs: 260, md: 450 }}}
             navButtonsAlwaysInvisible={true}
             indicatorIconButtonProps={{
               style: {
