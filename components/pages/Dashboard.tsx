@@ -3,9 +3,10 @@ import { Box, IconButton, ImageList, ImageListItem, ImageListItemBar, ListSubhea
 import Card from "./card";
 import ArrowRightAltSharpIcon from '@mui/icons-material/ArrowRightAltSharp';
 import Carousel from "react-material-ui-carousel";
+import Image from "next/image";
 
 
-const userData = [{
+const userData: {name: string, time: string, image: string}[] = [{
   name: 'Join [Video] Visit with Dr. Mark Greene',
   time: 'Today at 4:00 PM ET',
   image: '/user.png'
@@ -16,7 +17,7 @@ const userData = [{
   image: '/user.png'
 }]
 
-const ActionMenu = [{
+const ActionMenu: {name: string, description: string, icon: string}[] = [{
   name: 'Schedule a follow-up appointment',
   description: 'Your Zealthy provider requested you schedule a follow-up during your last visit.',
   icon: '/Schedule.png'
@@ -58,7 +59,7 @@ const ActionMenu = [{
 },
 ]
 
-const GetCareData = [{
+const GetCareData: {name: string, description: string, icon: string}[] = [{
   name: 'Schedule a visit or request a new prescription',
   description: 'Same/next-day appointments over video, phone or message',
   icon: '/phone.png'
@@ -85,7 +86,7 @@ const GetCareData = [{
 },
 ]
 
-const itemData = [{
+const itemData: {img: string, title: string}[] = [{
   img: '/silder_1.png',
   title: 'Try Zealthy’s weight loss program. We predict you’ll lose at least [30] lbs to achieve a weight of [170] lbs. '
 },
@@ -99,13 +100,15 @@ const itemData = [{
 }]
 
 export default function Dashboard() {
-  const CarouselItem = (item, index) => {
+
+  const CarouselItem = (item:any, index:any) => {
     return <ImageListItem key={index} cols={1}>
-    <img
+    <Image
       src={`${item.img}`}
-      srcSet={`${item.img}`}
       alt={item.title}
       loading="lazy"
+      width={568}
+      height={400}
     />
     <ImageListItemBar
       title={<Box sx={{ 
@@ -113,16 +116,16 @@ export default function Dashboard() {
         lineHeight: { xs: '16px', md: '24px' },
         letterSpacing: { xs: '0.004em', md: '0.3px' },
         color: '#FFFFFF',
-        width: { xs: '216px', md: '472px' }, height: '48px', whiteSpace: 'pre-line'}}>{item.title}</Box>}
+        width: { xs: '216px', md: '472px' }, padding: '0', height: '48px', whiteSpace: 'pre-line'}}>{item.title}</Box>}
       sx={{ whiteSpace: 'pre-wrap !important' , background:'rgba(0, 33, 11, 0.8)', WebkitLineClamp: "2",
       alignItems: 'center',
-      padding: '12px',
+      padding: '21px 24px 21px 9px',
       gap: '12px',
       height:'96px'
     }}
       actionIcon={
         <IconButton
-          sx={{ color: 'rgba(255, 255, 255, 0.54)'
+          sx={{ color: 'rgba(255, 255, 255, 0.54)', p: '0'
         }}
           aria-label={`info about ${item.title}`}
         >
@@ -135,31 +138,31 @@ export default function Dashboard() {
   return (
     <Box component="main" sx={{ p: { xs: '114px 25px 20px 22px', md: '222px 25px 20px 22px' }, display: 'flex', justifyContent: 'center' }}>
       <Box sx={{ maxWidth: '568px', width: '100%', }}>
-        <Typography variant="h1" sx={{ fontWeight: 700, fontSize: { xs: '20px', md: '28px' }, lineHeight: '40px', mb: { xs: '24px', md: '48px' } }}>Hi, [Kyle]! </Typography>
+        <Typography variant="h1" sx={{ fontWeight: 700, fontSize: { xs: '20px', md: '28px' }, lineHeight: '40px', mb: { xs: '24px', md: '48px' }, fontFamily: 'Abril Text' }}>Hi, [Kyle]! </Typography>
         <Box sx={{ mb: '48px' }}>
           {
             userData.map((item, i) => (
-              <Card name={item.name} type={'sm'} time={item.time} avatar={item.image} style={{ width: '100%', background: '#00210B', borderRadius: '16px', p: '24px', mb: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #00210B' }} color={'white'} />
+              <Card key={i} name={item.name} type={'sm'} time={item.time} avatar={item.image} style={{ width: '100%', background: '#00210B', borderRadius: '16px', p: '24px', mb: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #00210B' }} color={'white'} />
             ))
           }
         </Box>
-        <Typography sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '26px', mb: '16px' }}>Action items</Typography>
+        <Typography sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '26px', mb: '16px', fontFamily: 'Inter' }}>Action items</Typography>
         <Box sx={{ mb: '48px' }}>
           {
-            ActionMenu.map((item, i) => (
-              <Card name={item.name} time={item.description} avatar={item.icon} style={{ width: '100%', background: '#FFEAE3', borderRadius: '16px', p: { xs: '16px', md: '24px' }, mb: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #CCCCCC' }} color={'#1B1B1B'} />
+            ActionMenu.map((item, i) => (              
+              <Card key={i} name={item.name} time={item.description} avatar={item.icon} style={{ width: '100%', background: '#FFEAE3', borderRadius: '16px', p: { xs: '16px', md: '24px' }, mb: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #CCCCCC' }} color={'#1B1B1B'} />
             ))
           }
         </Box>
-        <Typography sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '26px', mb: '16px' }}>Get the care you need</Typography>
+        <Typography sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '26px', mb: '16px', fontFamily: 'Inter' }}>Get the care you need</Typography>
         <Box sx={{ mb: '48px' }}>
           {
             GetCareData.map((item, i) => (
-              <Card name={item.name} time={item.description} avatar={item.icon} style={{ width: '100%', background: 'white', borderRadius: '16px', p: { xs: '16px', md: '24px' }, mb: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #CCCCCC' }} color={'#1B1B1B'} />
+              <Card key={i} name={item.name} time={item.description} avatar={item.icon} style={{ width: '100%', background: 'white', borderRadius: '16px', p: { xs: '16px', md: '24px' }, mb: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #CCCCCC' }} color={'#1B1B1B'} />
             ))
           }
         </Box>
-        <Typography sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '26px', mb: '16px' }}>Explore our offerings</Typography>
+        <Typography sx={{ fontWeight: 600, fontSize: '18px', lineHeight: '26px', mb: '16px', fontFamily: 'Inter' }}>Explore our offerings</Typography>
 
         <ImageList sx={{ width : { xs: 312, md: 568 }, height: { xs: 260, md: 450 } , display: 'block' }}>
           <Carousel indicatorContainerProps={{

@@ -7,10 +7,10 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import Image from "next/image";
 import { textAlign } from "@mui/system";
 import { useState } from "react";
-const drawerWidth = 280;
-const navItems = ['Home', 'Treat me now', 'Schedule visit', 'Messages'];
+const drawerWidth:number = 280;
+const navItems: string[] = ['Home', 'Treat me now', 'Schedule visit', 'Messages'];
 
-const Header = (props) => {
+export default function Header(props: any) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -21,15 +21,15 @@ const Header = (props) => {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
-                ZEALTHY
+            <Typography variant="h6" sx={{ my: '12px' }}>
+                <Image src='/logo.png' alt="logo" width={117} height={15} />
             </Typography>
             <Divider />
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
                         <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item} />
+                            <ListItemText primary={item} sx={{fontFamily: 'Inter !important', fontWeight: 500}} />
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -38,7 +38,7 @@ const Header = (props) => {
     );
     return (
         <>
-            <Box sx={{ flexGrow: 1 }} >
+            <Box sx={{ flexGrow: 1 }}>
                 <AppBar component="nav" sx={{ minHeight: { md: '108px' }, justifyContent: 'center', background: 'white', color: '#1B1B1B', boxShadow: 'none', borderBottom: '1px solid #CCCCCC' }}>
                     <Toolbar sx={{ height: '100%', p: { md: '0 26px !important', xl: '0 56px !important' } }}>
                         <IconButton
@@ -54,20 +54,20 @@ const Header = (props) => {
                             component="div"
                             sx={{ flexGrow: 1, fontWeight: 900, fontSize: '20px', lineHeight: '24px', textAlign: { xs: 'center', sm: 'left' } }}
                         >
-                            ZEALTHY
+                            <Image src='/logo.png' alt="logo" width={117} height={15} />
                         </Typography>
                         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                             {
                                 navItems.map((item, i) => (
                                     <>
-                                        <Button sx={{ color: '#1B1B1B', textTransform: "capitalize", paddingX: '17.5px', fontWeight: 500, fontSize: '16px', lineHeight: '24px' }}>{item}</Button>
+                                        <Button sx={{ color: '#1B1B1B', textTransform: "capitalize", paddingX: '17.5px', fontWeight: 500, fontSize: '16px', lineHeight: '24px', fontFamily: 'Inter !important' }}>{item}</Button>
                                     </>
                                 ))
                             }
                         </Box>
                         <Box sx={{ display: { xs: 'none', md: 'block' }, ml: '56px' }}>
                             <Avatar sx={{ background: '#8ACDA0' }}>
-                                <Image src="/User_icon.png" width={24} height={24} />
+                                <Image src="/User_icon.png" alt="avtar" width={24} height={24} />
                             </Avatar>
                         </Box>
                         <IconButton
@@ -102,5 +102,3 @@ const Header = (props) => {
         </>
     );
 };
-
-export default Header;
